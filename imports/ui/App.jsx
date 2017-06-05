@@ -49,13 +49,13 @@ class App extends Component {
     }
 
    render() {
-     return (
+   return (
      <div className="container">
-     <header>
-       <h1>Todo List</h1>
+       <header>
+         <h1>Todo List ({this.props.incompleteCount})</h1>
 
-       <label className="hide-completed">
-         <input
+         <label className="hide-completed">
+           <input
            type="checkbox"
            readOnly
            checked={this.state.hideCompleted}
@@ -81,11 +81,12 @@ class App extends Component {
    }
  }
 
-App.propTypes = {
-  tasks: PropTypes.array.isRequired,
-};
+ App.propTypes = {
+   tasks: PropTypes.array.isRequired,
+   incompleteCount: PropTypes.number.isRequired,
+ };
 
-export default createContainer(() => {
+ export default createContainer(() => {
   return {
     tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
     incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
