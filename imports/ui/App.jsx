@@ -32,12 +32,22 @@ class App extends Component {
    render() {
      return (
      <div className="container">
-       <header>
-         <h1>Todo List</h1>
+     <header>
+       <h1>Todo List</h1>
 
-         <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-           <input
-             type="text"
+       <label className="hide-completed">
+         <input
+           type="checkbox"
+           readOnly
+           checked={this.state.hideCompleted}
+           onClick={this.toggleHideCompleted.bind(this)}
+         />
+         Hide Completed Tasks
+       </label>
+
+       <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+         <input
+           type="text"
              ref="textInput"
              placeholder="Type to add new tasks"
            />
