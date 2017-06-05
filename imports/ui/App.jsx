@@ -8,8 +8,17 @@ import Task from './Task.jsx';
 
 // App component - represents the whole app
 class App extends Component {
-  handleSubmit(event) {
-    event.preventDefault();
+ constructor(props) {
+   super(props);
+
+   this.state = {
+     hideCompleted: false,
+   };
+ }
+
+ handleSubmit(event) {
+   event.preventDefault();
+
 
     // Find the text field via the React ref
     const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
