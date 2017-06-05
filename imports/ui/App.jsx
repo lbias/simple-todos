@@ -36,13 +36,17 @@ class App extends Component {
     this.setState({
       hideCompleted: !this.state.hideCompleted,
     });
-  }
+    }
 
-  renderTasks() {
-    return this.props.tasks.map((task) => (
-      <Task key={task._id} task={task} />
-    ));
-  }
+    renderTasks() {
+      let filteredTasks = this.props.tasks;
+      if (this.state.hideCompleted) {
+        filteredTasks = filteredTasks.filter(task => !task.checked);
+      }
+      return filteredTasks.map((task) => (
+        <Task key={task._id} task={task} />
+      ));
+    }
 
    render() {
      return (
