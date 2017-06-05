@@ -68,18 +68,20 @@ class App extends Component {
          Hide Completed Tasks
        </label>
 
-       <AccountsUIWrapper />
+        <AccountsUIWrapper />
 
-       <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-         <input
-           type="text"
-             ref="textInput"
-             placeholder="Type to add new tasks"
-           />
-         </form>
-       </header>
+        { this.props.currentUser ?
+          <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+            <input
+              type="text"
+              ref="textInput"
+              placeholder="Type to add new tasks"
+            />
+          </form> : ''
+        }
+      </header>
 
-       <ul>
+      <ul>
            {this.renderTasks()}
          </ul>
        </div>
@@ -90,6 +92,7 @@ class App extends Component {
  App.propTypes = {
    tasks: PropTypes.array.isRequired,
    incompleteCount: PropTypes.number.isRequired,
+   currentUser: PropTypes.object,
  };
 
  export default createContainer(() => {
