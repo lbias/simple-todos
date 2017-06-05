@@ -15,12 +15,20 @@ class App extends Component {
 
    render() {
      return (
-       <div className="container">
-         <header>
-           <h1>Todo List</h1>
-         </header>
+     <div className="container">
+       <header>
+         <h1>Todo List</h1>
 
-         <ul>
+         <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+           <input
+             type="text"
+             ref="textInput"
+             placeholder="Type to add new tasks"
+           />
+         </form>
+       </header>
+
+       <ul>
            {this.renderTasks()}
          </ul>
        </div>
